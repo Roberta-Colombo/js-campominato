@@ -82,16 +82,9 @@ function play(){
                <span><i class="fa-regular fa-face-dizzy"></i></span>
                `
                 gameOver();
-                // per rendere impossibile cliccare altre caselle dopo il game over
-                const blockedSquares = document.getElementsByClassName("square");
-                console.log(blockedSquares);
-                               
-                while(blockedSquares <= numOfSquares){
-                    blockedSquares.classList.add('unclickable');
-                }
-            }   
-        }
-        return square; 
+            }
+        } 
+        return square;  
     }
     createSquare(num);
 
@@ -102,6 +95,13 @@ function play(){
         scoreMessage.innerHTML = `
         <span class="message-text">Il tuo punteggio è: ${score}.</span>  
         `;
+        // per rendere impossibile cliccare altre caselle dopo il game over:
+        const blockedSquares = document.getElementsByClassName("square");
+        console.log(blockedSquares);
+                       
+        for(let i = 0; i < blockedSquares.length; i++){
+            blockedSquares[i].classList.add('unclickable');
+        }
 
         if(score === maxAttempts){
             scoreMessage.innerHTML += `
