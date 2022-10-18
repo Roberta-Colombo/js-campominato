@@ -71,12 +71,26 @@ function play(){
             score++;
             console.log(score);
             this.classList.add('clicked');
+            this.innerHTML = `
+            <span><i class="fa-solid fa-martini-glass-citrus"></i>
+            `
             console.log("Hai cliccato la cella nr." + num);
+            
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
+               this.innerHTML = `
+               <span><i class="fa-regular fa-face-dizzy"></i></span>
+               `
                 gameOver();
-                document.getElementsByClassName("square").classList.add('unclickable');        
-            }
+
+                const blockedSquares = document.getElementsByClassName("square");
+                console.log(blockedSquares);
+                
+                while(blockedSquares <= square){
+                    blockedSquares[i].classList.add('unclickable');
+                }
+            }      
+                    
         }
 
         // function blockGrid(){
@@ -88,9 +102,13 @@ function play(){
     createSquare(num);
 
     function gameOver(){
+        const messageDiv = document.querySelector('.message');
         const scoreMessage = document.createElement('div');
-        playfield.append(scoreMessage);
+        messageDiv.append(scoreMessage);
         scoreMessage.innerHTML = "Il tuo punteggio è: " + score + ".";
+        // const scoreMessage = document.querySelector('.modal-bg');
+        // scoreMessage.className = 'show-modal';
+       
 
         if(score === maxAttempts){
             scoreMessage.innerHTML += " Hai vinto!"
