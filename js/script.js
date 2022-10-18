@@ -89,8 +89,8 @@ function play(){
                 while(blockedSquares <= square){
                     blockedSquares[i].classList.add('unclickable');
                 }
-                    
-        }
+        }   
+    }
 
         // function blockGrid(){
         //     square.classList.add('unclickable');
