@@ -20,7 +20,7 @@ function play(){
     const messageDiv = document.querySelector('.message');
     const scoreMessage = document.createElement('div');
     messageDiv.append(scoreMessage);
-    scoreMessage.innerHTML = ' ';
+    scoreMessage.innerHTML = '';
     // non svuota messaggio??
     console.log("Start");
     const playfield = document.querySelector('.playfield');
@@ -79,7 +79,7 @@ function play(){
             this.innerHTML = `
             <span class="icon-size"><i class="fa-solid fa-pizza-slice"></i>
             `
-            console.log("Hai cliccato la cella nr." + num);
+            // console.log("Hai cliccato la cella nr." + num);
             
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
@@ -94,9 +94,6 @@ function play(){
     createSquare(num);
 
     function gameOver(){
-        // const messageDiv = document.querySelector('.message');
-        // const scoreMessage = document.createElement('div');
-        // messageDiv.append(scoreMessage);
         scoreMessage.innerHTML = `
         <span class="message-text">Il tuo punteggio è: ${score}.</span>  
         `;
