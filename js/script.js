@@ -1,3 +1,17 @@
+/* Consegna:
+X L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
+con difficoltà 1 => tra 1 e 100
+con difficoltà 2 => tra 1 e 81
+con difficoltà 3 => tra 1 e 49
+X Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
+X I numeri nella lista delle bombe non possono essere duplicati.
+In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
+Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
+BONUS:
+1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
+2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste */
+
 
 
 const playBtn = document.getElementById('play-btn');
@@ -35,6 +49,32 @@ function play(){
         console.log(bombsArray);
     }
     placeBombs();
+
+    function gameOver(){
+        console.log('game over');
+        if(score === maxAttemptsReached){
+            console.log('hai vinto!');
+        }
+        else{
+            console.log('hai perso');
+        }
+    }
+
+    function score(){
+       const clickedSquares = [];
+       while(clickedSquares.length <= maxAttemptsReached()){
+        const userScore = document.getElementsByClassName('clicked');
+        clickedSquares.push(userScore);
+       }
+        console.log(clickedSquares);
+    }
+    score();
+
+    function maxAttemptsReached(){
+        const maxAttempts = (numOfSquares - NUM_BOMBS);
+        console.log(maxAttempts);
+    }
+    maxAttemptsReached();
    
     let num;
     function createSquare(num){
@@ -52,6 +92,7 @@ function play(){
             console.log("Hai cliccato la cella nr." + num);
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
+               gameOver();
             }
         })
         return square; 
