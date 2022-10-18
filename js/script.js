@@ -17,6 +17,11 @@ X 2- quando si clicca su una bomba e finisce la partita, il software scopre tutt
 const playBtn = document.getElementById('play-btn');
 
 function play(){
+    const messageDiv = document.querySelector('.message');
+    const scoreMessage = document.createElement('div');
+    messageDiv.append(scoreMessage);
+    scoreMessage.innerHTML = ' ';
+    // non svuota messaggio??
     console.log("Start");
     const playfield = document.querySelector('.playfield');
     playfield.innerHTML = '';
@@ -72,14 +77,14 @@ function play(){
             console.log(score);
             this.classList.add('clicked');
             this.innerHTML = `
-            <span><i class="fa-solid fa-pizza-slice"></i>
+            <span class="icon-size"><i class="fa-solid fa-pizza-slice"></i>
             `
             console.log("Hai cliccato la cella nr." + num);
             
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
                this.innerHTML = `
-               <span><i class="fa-regular fa-face-dizzy"></i></span>
+               <span class="icon-size"><i class="fa-regular fa-face-dizzy"></i></span>
                `
                 gameOver();
             }
@@ -89,9 +94,9 @@ function play(){
     createSquare(num);
 
     function gameOver(){
-        const messageDiv = document.querySelector('.message');
-        const scoreMessage = document.createElement('div');
-        messageDiv.append(scoreMessage);
+        // const messageDiv = document.querySelector('.message');
+        // const scoreMessage = document.createElement('div');
+        // messageDiv.append(scoreMessage);
         scoreMessage.innerHTML = `
         <span class="message-text">Il tuo punteggio è: ${score}.</span>  
         `;
@@ -106,7 +111,7 @@ function play(){
             if(bombsArray.includes(num)){
                 blockedSquares[i].classList.add('bomb');
                 blockedSquares[i].innerHTML = `
-               <span><i class="fa-regular fa-face-dizzy"></i></span>
+               <span class="icon-size"><i class="fa-regular fa-face-dizzy"></i></span>
                `
             }
         }
