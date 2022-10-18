@@ -9,8 +9,8 @@ X In seguito l'utente clicca su una cella: se il numero è presente nella lista 
 X La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 BONUS:
-1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
-2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste */
+X 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
+X 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste */
 
 
 
@@ -101,6 +101,14 @@ function play(){
                        
         for(let i = 0; i < blockedSquares.length; i++){
             blockedSquares[i].classList.add('unclickable');
+            let num = i+1;
+            // i+1 perche i numeri partono da 1, ma l'array parte da 0;
+            if(bombsArray.includes(num)){
+                blockedSquares[i].classList.add('bomb');
+                blockedSquares[i].innerHTML = `
+               <span><i class="fa-regular fa-face-dizzy"></i></span>
+               `
+            }
         }
 
         if(score === maxAttempts){
