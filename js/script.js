@@ -6,7 +6,7 @@ con difficoltà 3 => tra 1 e 49
 X Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 X I numeri nella lista delle bombe non possono essere duplicati.
 X In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
+X La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 BONUS:
 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
@@ -39,6 +39,8 @@ function play(){
     }
 
     const NUM_BOMBS = 16; 
+    const maxAttempts = (numOfSquares - NUM_BOMBS);
+    console.log(maxAttempts);
 
     function placeBombs(){
         while(bombsArray.length < NUM_BOMBS){
@@ -51,33 +53,6 @@ function play(){
     }
     placeBombs();
 
-    function gameOver(){
-        console.log('game over');
-        if(score === maxAttemptsReached){
-            console.log('hai vinto!');
-        }
-        else{
-            console.log('hai perso');
-        }
-    }
-
-    // function score(){
-    // //    const clickedSquares = [];
-    // // //    const userScore = document.getElementsByClassName('clicked').length;
-
-    // //    const userScore = num
-    // //     clickedSquares.push(userScore);
-    // //     console.log(clickedSquares);
-
-    // }
-    // score();
-
-    function maxAttemptsReached(){
-        const maxAttempts = (numOfSquares - NUM_BOMBS);
-        console.log(maxAttempts);
-    }
-    maxAttemptsReached();
-   
     let num;
     function createSquare(num){
         let squaresPerSide = Math.sqrt(numOfSquares);
@@ -100,11 +75,32 @@ function play(){
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
                gameOver();
+                blockGrid();             
             }
         }
+
+        function blockGrid(){
+            square.removeEventListener('click', blockGrid);
+        }
+
         return square; 
     }
     createSquare(num);
+
+    function gameOver(){
+        const scoreMessage = document.createElement('div');
+        playfield.append(scoreMessage);
+        scoreMessage.innerHTML = "Il tuo punteggio è: " + score + ".";
+
+        if(score === maxAttempts){
+            scoreMessage.innerHTML += " Hai vinto!"
+            // console.log('hai vinto!');
+        }
+        else{
+            scoreMessage.innerHTML += " Purtroppo hai perso"
+            // console.log('hai perso');
+        }
+    }
     
     function createGrid(){
         const grid = document.createElement('div');
