@@ -39,3 +39,7 @@ footer {
 .bomb {
     background-color: red;
 }
+
+.unclickable {
+    pointer-events: none;
+}

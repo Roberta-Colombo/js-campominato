@@ -74,14 +74,14 @@ function play(){
             console.log("Hai cliccato la cella nr." + num);
             if(bombsArray.includes(num)){
                this.classList.add('bomb');
-               gameOver();
-                blockGrid();             
+                gameOver();
+                document.getElementsByClassName("square").classList.add('unclickable');        
             }
         }
 
-        function blockGrid(){
-            square.removeEventListener('click', blockGrid);
-        }
+        // function blockGrid(){
+        //     square.classList.add('unclickable');
+        // }
 
         return square; 
     }
