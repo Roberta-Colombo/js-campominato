@@ -89,7 +89,6 @@ function play(){
                 while(blockedSquares <= square){
                     blockedSquares[i].classList.add('unclickable');
                 }
-            }      
                     
         }
 
