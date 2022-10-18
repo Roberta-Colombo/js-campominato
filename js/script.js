@@ -61,7 +61,7 @@ function play(){
         square.style.width = ` calc(100% / ${squaresPerSide}) `;
         square.style.height = ` calc(100% / ${squaresPerSide}) `;
         square.innerHTML = `
-        <span>${num}</span>
+        <span class="square-text">${num}</span>
         `;
         
         square.addEventListener('click', result);
@@ -72,7 +72,7 @@ function play(){
             console.log(score);
             this.classList.add('clicked');
             this.innerHTML = `
-            <span><i class="fa-solid fa-martini-glass-citrus"></i>
+            <span><i class="fa-solid fa-pizza-slice"></i>
             `
             console.log("Hai cliccato la cella nr." + num);
             
@@ -82,20 +82,15 @@ function play(){
                <span><i class="fa-regular fa-face-dizzy"></i></span>
                `
                 gameOver();
-
+                // per rendere impossibile cliccare altre caselle dopo il game over
                 const blockedSquares = document.getElementsByClassName("square");
                 console.log(blockedSquares);
-                
-                while(blockedSquares <= square){
-                    blockedSquares[i].classList.add('unclickable');
+                               
+                while(blockedSquares <= numOfSquares){
+                    blockedSquares.classList.add('unclickable');
                 }
-        }   
-    }
-
-        // function blockGrid(){
-        //     square.classList.add('unclickable');
-        // }
-
+            }   
+        }
         return square; 
     }
     createSquare(num);
@@ -104,17 +99,20 @@ function play(){
         const messageDiv = document.querySelector('.message');
         const scoreMessage = document.createElement('div');
         messageDiv.append(scoreMessage);
-        scoreMessage.innerHTML = "Il tuo punteggio è: " + score + ".";
-        // const scoreMessage = document.querySelector('.modal-bg');
-        // scoreMessage.className = 'show-modal';
-       
+        scoreMessage.innerHTML = `
+        <span class="message-text">Il tuo punteggio è: ${score}.</span>  
+        `;
 
         if(score === maxAttempts){
-            scoreMessage.innerHTML += " Hai vinto!"
+            scoreMessage.innerHTML += `
+            <span class="message-text">Hai vinto!*</span>
+            `
             // console.log('hai vinto!');
         }
         else{
-            scoreMessage.innerHTML += " Purtroppo hai perso"
+            scoreMessage.innerHTML += `
+            <span class="message-text">Hai mangiato troppo :(</span>
+            `
             // console.log('hai perso');
         }
     }

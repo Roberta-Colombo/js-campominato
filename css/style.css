@@ -1,17 +1,22 @@
 header {
     height: 70px;
-    background-color: azure;
+    color: white;
 } 
 
 main {
-    background-color: antiquewhite;
     height: calc(100vh - 140px);
     overflow-y: auto;
+    background-color: white;
 }
 
 footer {
     height: 70px;
     background-color: azure;
+    color: white;
+}
+
+footer, header {
+    background-color: #EA047E;
 }
 
 .grid {
@@ -25,6 +30,7 @@ footer {
 }
 
 .square {
+    background-color: #FF6D28;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,27 +40,30 @@ footer {
 }
 
 .clicked {
-    background-color: aquamarine;
+    background-color: #FCE700;
 }
 
 .bomb {
-    background-color: red;
+    background-color: #EA047E;
 }
 
 .unclickable {
     pointer-events: none;
 }
 
-/* .modal-bg {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
+.square-text {
+    color: #FCE700; ;
+    font-weight: bold;
 }
 
-.show-modal {
-    visibility: visible;
-} */
+.message-text {
+    color: black;
+}
+
+button {
+    background-color: #00F5FF;
+    border-radius: 10px;
+    border: 1px solid #00F5FF;  
+    color: white;
+    font-weight: bold;
+}
