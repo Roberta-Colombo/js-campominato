@@ -18,10 +18,7 @@ const playBtn = document.getElementById('play-btn');
 
 function play(){
     const messageDiv = document.querySelector('.message');
-    const scoreMessage = document.createElement('div');
-    messageDiv.append(scoreMessage);
-    scoreMessage.innerHTML = '';
-    // non svuota messaggio??
+    messageDiv.innerHTML = '';
     console.log("Start");
     const playfield = document.querySelector('.playfield');
     playfield.innerHTML = '';
@@ -94,6 +91,8 @@ function play(){
     createSquare(num);
 
     function gameOver(){
+        const scoreMessage = document.createElement('div');
+        messageDiv.append(scoreMessage);
         scoreMessage.innerHTML = `
         <span class="message-text">Il tuo punteggio è: ${score}.</span>  
         `;
@@ -115,7 +114,7 @@ function play(){
 
         if(score === maxAttempts){
             scoreMessage.innerHTML += `
-            <span class="message-text">Hai vinto!*</span>
+            <span class="message-text">Hai vinto!&ast;</span>
             `
             // console.log('hai vinto!');
         }
