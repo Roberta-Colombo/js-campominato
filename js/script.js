@@ -79,9 +79,10 @@ function play(){
             // console.log("Hai cliccato la cella nr." + num);
             
             if(bombsArray.includes(num)){
-               this.classList.add('bomb');
-               this.innerHTML = `
-               <span class="icon-size"><i class="fa-regular fa-face-dizzy"></i></span>
+                score--;
+                this.classList.add('bomb');
+                this.innerHTML = `
+                <span class="icon-size"><i class="fa-regular fa-face-dizzy"></i></span>
                `
                 gameOver();
             }
